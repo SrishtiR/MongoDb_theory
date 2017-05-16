@@ -1,9 +1,9 @@
-- Document database
+- Document oriented database
 - NoSql databse 
 - Data or records are stored as documents, JSON objects, Javascript object notation
 - Comparision between NoSql databases and relational databases
 - No pre defined structuring required before building your applicstion
-- Very easy to scale as compared to rdbms
+- Very easy to scale as compared to rdbms, high performance
 
 Flags : 
 cd mongodb/bin
