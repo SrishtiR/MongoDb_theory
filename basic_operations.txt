@@ -8,12 +8,10 @@
 Flags : 
 cd mongodb/bin
 mongod --directoryperdb --dbpath C:\mongodb\data\db --logpath C:\mongodb\log\mongo.log --logappend --rest --install 
-
 net start MongoDB
+(Above 3 will set flags and make mongo run in the background as a service)
 
-(runs in the background as a service)
-
-mongo => in mongo shell
+type mongo to get into in mongo shell
 
 > showdb
 => shows all existing databases
@@ -35,7 +33,6 @@ to check current database => type db
    {name: "Brad", relationship:"friend"}
    ]
 }
-
 
 creating a new user for the database  :
 
