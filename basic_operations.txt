@@ -21,6 +21,7 @@ type mongo to get into in mongo shell
 
 to check current database => type db
 
+Sample JSON object :
 {
   first_name : "John",
   last_name : "Doe",
@@ -50,7 +51,7 @@ Collections are very similar to tables in a database.
 >db.customers.insert({first_name:"John", last_name:"Doe"});
 to see documents in a collection :
 >db.customers.find();
-ID fields is automatically created
+ID field is automatically created
 
 >db.customers.insert([{first_name:"Steven", last_name:"Smith"},{first_name:"Joan", last_name:"Johnson",gender:"female"}]);
 Even though we didn't specify gender in the first 2 rows, the last one would have a field gender. i.e. we can add more fields as per our requirement
