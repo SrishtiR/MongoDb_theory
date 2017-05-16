@@ -33,7 +33,7 @@ net start MongoDB
 
 type mongo to get into in mongo shell
 
-> showdb
+> db
 => shows all existing databases
 
 > use mycustomers
