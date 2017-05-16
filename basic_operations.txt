@@ -6,8 +6,7 @@
 - Very easy to scale as compared to rdbms
 
 Flags : 
-cd mongodb
-cd bin
+cd mongodb/bin
 mongod --directoryperdb --dbpath C:\mongodb\data\db --logpath C:\mongodb\log\mongo.log --logappend --rest --install 
 
 net start MongoDB
