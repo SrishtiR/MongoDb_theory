@@ -41,7 +41,7 @@ type mongo to get into in mongo shell
 
 to check current database => type db
 
-Sample JSON object :
+Sample document :
 {
   first_name : "John",
   last_name : "Doe",
