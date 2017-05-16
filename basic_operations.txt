@@ -1,0 +1,120 @@
+- Document database
+- NoSql databse 
+- Data or records are stored as documents, JSON objects, Javascript object notation
+- Comparision between NoSql databases and relational databases
+- No pre defined structuring required before building your applicstion
+- Very easy to scale as compared to rdbms
+
+Flags : 
+cd mongodb
+cd bin
+mongod --directoryperdb --dbpath C:\mongodb\data\db --logpath C:\mongodb\log\mongo.log --logappend --rest --install 
+
+net start MongoDB
+
+(runs in the background as a service)
+
+mongo => in mongo shell
+
+> showdb
+=> shows all existing databases
+
+> use mycustomers
+=> command to create a new databse called my customers and switch to that database
+
+to check current database => type db
+
+{
+  first_name : "John",
+  last_name : "Doe",
+  memberships : ["mem1","mem2"],
+  address : {
+    street : "4 main st",
+    city : "Boston"
+   }
+   contacts : [
+   {name: "Brad", relationship:"friend"}
+   ]
+}
+
+
+creating a new user for the database  :
+
+db.createUser({
+  user:"brad",
+  pwd:"1234",
+  roles:["readWrite","dbAdmin"]
+});
+
+Adding data into database :
+Collections are very similar to tables in a database.
+
+>db.createCollection('customers');
+>show collections
+>db.customers.insert({first_name:"John", last_name:"Doe"});
+to see documents in a collection :
+>db.customers.find();
+ID fields is automatically created
+
+>db.customers.insert([{first_name:"Steven", last_name:"Smith"},{first_name:"Joan", last_name:"Johnson",gender:"female"}]);
+Even though we didn't specify gender in the first 2 rows, the last one would have a field gender. i.e. we can add more fields as per our requirement
+
+>db.customers.find().pretty();
+Displays the records in a better way
+
+>db.customers.update({first_name:"John"},{first_name:"John",last_name:"Doe",gender:"Male"});
+Now John Doe will have a gender of male, if we missed a field it will be removed
+
+
+>db.customers.update({first_name:"Steven"},{$set:{gender:"Male"})
+This will add a field. Previous fields will remain untouched.
+
+inc operator :
+
+>db.customers.update({first_name:"Steven"},{$set:{age:"45"})
+
+>db.customers.update({first_name:"Steven"},{$inc:{age:5}});
+
+operator unset :
+
+>db.customers.update({first_name:"Steven",{($unset:{age:1})
+Now steven will not have age field
+
+>db.customers.update({first_name:"Mary",{first_name:"Mary",last_name:"Samson"},{upsert : true})
+with upsert the new updated row gets inserted
+
+>db.customer.remove({first_name:"Steven"})
+Removes all the customers with first_name Steven
+
+>db.customer.remove({first_name:"Steven"},{justOne:true})
+removes only one record
+
+>db.customers.find({first_name:"Sharon"})
+=> will give all sharon info
+
+>db.customers.find({$or:[first_name:"Sharon", {first_name:"Troy"}]);
+
+>db.customers.find({age:{$lt:40}}).pretty();
+gives every customer with age < 40
+
+>db.customers.find({"address.city":Boston"});
+There are some which would require quotes in the key as well
+
+>db.customers.find({memberships:"mem1"});
+
+Sorting :
+>db.customers.find().sort({last_name:1});
+Ascending order based on last_name
+for descending, set it to -1
+
+>db.customers.find().count();
+>db.customers.find({gender:"male"}).count();
+>>db.customers.find().limit(4).sort({last_name:1});
+
+Using for-each to iterate :
+
+>db.customers.find().forEach(function(doc){print("Customer Name: "+doc.first_name)});
+
+
+
+ 
